@@ -88,40 +88,6 @@
 	</build>
 
 	<dependencies>
-		<dependency>
-			<groupId>uk.co.lukestevens</groupId>
-			<artifactId>base-lib</artifactId>
-			<version>${core.libs.version}</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>uk.co.lukestevens</groupId>
-			<artifactId>db-lib</artifactId>
-			<version>${core.libs.version}</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>uk.co.lukestevens</groupId>
-			<artifactId>config-lib</artifactId>
-			<version>${core.libs.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>uk.co.lukestevens</groupId>
-			<artifactId>db-config-lib</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>uk.co.lukestevens</groupId>
-			<artifactId>logging-lib</artifactId>
-			<version>${core.libs.version}</version>
-			<scope>provided</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>uk.co.lukestevens</groupId>
