@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>uk.co.lukestevens</groupId>
-	
+
 	<!-- Replace me! -->
 	<artifactId>template-api</artifactId>
 	<version>1.0.0</version>
@@ -93,6 +93,19 @@
 			<groupId>uk.co.lukestevens</groupId>
 			<artifactId>server-lib</artifactId>
 			<version>${core.libs.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>uk.co.lukestevens</groupId>
+			<artifactId>template-client</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>4.4.1</version>
 		</dependency>
 
 		<!-- JUnit test dependencies -->
