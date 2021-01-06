@@ -1,5 +1,6 @@
 package uk.co.lukestevens.api;
 
+import java.net.HttpURLConnection;
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,6 +55,7 @@ public class TemplateRouteConfiguration extends AbstractRouteConfiguration {
 	protected Object deleteExample(Request req, Response res) throws ServerException {
 		String id = req.params("id");
 		api.deleteExample(id);
+		res.status(HttpURLConnection.HTTP_NO_CONTENT);
 		return EMPTY_RESPONSE;
 	}
 

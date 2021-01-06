@@ -13,15 +13,15 @@ import uk.co.lukestevens.server.exceptions.ServerException;
 @Singleton
 public class TemplateApiService {
 	
-	private final AtomicInteger identifiers = new AtomicInteger(1);
-	private final Map<Integer, Example> data = new HashMap<>();
+	public static AtomicInteger identifiers = new AtomicInteger(1);
+	public static Map<Integer, Example> data = new HashMap<>();
 	
 	public Example getExample(String id) throws ServerException {
 		validateId(id);
 		
-		Example example = this.data.get(Integer.parseInt(id));
+		Example example = data.get(Integer.parseInt(id));
 		if(example == null) {
-			ServerException.notFound().throwException();
+			ServerException.notFound().withError("No example found for id " + id).throwException();
 		}
 		return example;
 	}
@@ -49,8 +49,8 @@ public class TemplateApiService {
 	}
 	
 	void validateId(String id) throws ServerException {
-		if(id == null || !id.matches("//d+")) {
-			ServerException.notFound().throwException(); 
+		if(id == null || !id.matches("\\d+")) {
+			ServerException.notFound().withError("id must be a number.").throwException(); 
 		}
 	}
 	
