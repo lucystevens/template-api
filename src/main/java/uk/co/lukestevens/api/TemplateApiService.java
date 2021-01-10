@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.inject.Singleton;
 
-import uk.co.lukestevens.models.Example;
+import uk.co.lukestevens.api.models.Example;
 import uk.co.lukestevens.server.exceptions.ServerException;
 
 

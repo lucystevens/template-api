@@ -10,8 +10,8 @@ import com.google.gson.Gson;
 
 import spark.Request;
 import spark.Response;
+import uk.co.lukestevens.api.models.Example;
 import uk.co.lukestevens.logging.LoggingProvider;
-import uk.co.lukestevens.models.Example;
 import uk.co.lukestevens.server.exceptions.ServerException;
 import uk.co.lukestevens.server.routes.AbstractRouteConfiguration;
 import uk.co.lukestevens.server.routes.DefinedRoute;

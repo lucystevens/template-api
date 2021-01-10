@@ -21,13 +21,13 @@ import okhttp3.OkHttpClient;
 import uk.co.lukestevens.api.TemplateApiService;
 import uk.co.lukestevens.api.client.ApiClientException;
 import uk.co.lukestevens.api.client.ApiStatus;
-import uk.co.lukestevens.api.client.TemplateApiClient;
+import uk.co.lukestevens.api.client.template.TemplateApiClient;
+import uk.co.lukestevens.api.models.Example;
 import uk.co.lukestevens.config.Config;
 import uk.co.lukestevens.config.models.PropertiesConfig;
 import uk.co.lukestevens.jdbc.result.DatabaseResult;
 import uk.co.lukestevens.logging.LoggerLevel;
 import uk.co.lukestevens.logging.models.Log;
-import uk.co.lukestevens.models.Example;
 import uk.co.lukestevens.testing.db.TestDatabase;
 
 // Integration test testing full server ability and client library
