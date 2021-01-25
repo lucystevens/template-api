@@ -29,6 +29,7 @@ import uk.co.lukestevens.jdbc.result.DatabaseResult;
 import uk.co.lukestevens.logging.LoggerLevel;
 import uk.co.lukestevens.logging.models.Log;
 import uk.co.lukestevens.testing.db.TestDatabase;
+import uk.co.lukestevens.testing.mocks.EnvironmentVariableMocker;
 
 // Integration test testing full server ability and client library
 public class TemplateApiIntegrationTest {
@@ -40,12 +41,13 @@ public class TemplateApiIntegrationTest {
 		db = new TestDatabase();
 		db.executeFile("integration");
 		
+		EnvironmentVariableMocker.build()
+			.with(db.getProperties())
+			.with("database.logging.enabled", "true")
+			.mock();
+		
 		// run server
-		String[] args = {
-				"-c", "src/test/resources/integration.conf",
-				"--enable-db-logging"
-		};
-		TemplateApiMain.main(args);
+		TemplateApiMain.main(new String[] {});
 	}
 	
 	TemplateApiClient client;
