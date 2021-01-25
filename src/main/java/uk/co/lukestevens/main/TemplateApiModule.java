@@ -1,20 +1,16 @@
 package uk.co.lukestevens.main;
 
+import com.google.inject.AbstractModule;
+
 import uk.co.lukestevens.api.TemplateApiService;
 import uk.co.lukestevens.api.TemplateRouteConfiguration;
-import uk.co.lukestevens.injection.BaseInjectModule;
 import uk.co.lukestevens.server.routes.RouteConfiguration;
 
-public class TemplateInjectModule extends BaseInjectModule {
+public class TemplateApiModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		super.configure();
 		bind(TemplateApiService.class);
-	}
-
-	@Override
-	protected void bindRouteConfiguration() {
 		bind(RouteConfiguration.class).to(TemplateRouteConfiguration.class);
 	}
 

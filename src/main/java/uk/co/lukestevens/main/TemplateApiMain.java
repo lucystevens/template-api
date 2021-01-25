@@ -4,20 +4,12 @@ import java.io.IOException;
 
 import org.apache.commons.cli.ParseException;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
-import uk.co.lukestevens.injection.BaseInjectModule;
-import uk.co.lukestevens.server.BaseServer;
+import uk.co.lukestevens.app.App;
 
 public class TemplateApiMain {
 
 	public static void main(String[] args) throws ParseException, IOException {
-		BaseInjectModule injectModule = new TemplateInjectModule();
-		Injector injector = Guice.createInjector(injectModule);
-		
-		BaseServer server = injector.getInstance(BaseServer.class);
-		server.init();
+		App.start(new TemplateApiModule());
 	}
 
 }
