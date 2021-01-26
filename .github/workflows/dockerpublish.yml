@@ -29,7 +29,7 @@ jobs:
       run: mvn -B package -s .m2/settings.xml --file pom.xml
 
     - name: Export maven properties
-      run: source ./mvn-export.sh
+      run: ./mvn-export.sh
 
     - name: Echo image name
       run: echo $DOCKERHUB_USERNAME/$MVN_ARTIFACT:$MVN_VERSION
@@ -37,5 +37,5 @@ jobs:
     - name: Login to Docker Hub
       uses: docker/login-action@v1
       with:
-        username: $DOCKERHUB_USERNAME
+        username: ${{ env.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
