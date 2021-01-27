@@ -31,17 +31,17 @@ jobs:
     - name: Get version
       run: |
           VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
-          echo "::set-env name=MVN_VERSION::$VERSION"
+          echo "{MVN_VERSION}={$VERSION}" >> $GITHUB_ENV
 
     - name: Get artifactId
       run: |
           ARTIFACT=$( mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout )
-          echo "::set-env name=MVN_ARTIFACT::$ARTIFACT"
+          echo "{MVN_ARTIFACT}={$ARTIFACT}" >> $GITHUB_ENV
 
     - name: Get groupId
       run: |
           GROUP=$( mvn help:evaluate -Dexpression=project.groupId -q -DforceStdout )
-          echo "::set-env name=MVN_GROUP::$GROUP"
+          echo "{MVN_GROUP}={$GROUP}" >> $GITHUB_ENV
 
     - name: Echo image name
       run: echo $DOCKERHUB_USERNAME/$MVN_ARTIFACT:$MVN_VERSION
