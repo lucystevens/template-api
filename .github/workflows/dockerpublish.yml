@@ -28,8 +28,20 @@ jobs:
     - name: Build with Maven
       run: mvn -B package -s .m2/settings.xml --file pom.xml
 
-    - name: Export maven properties
-      run: ./mvn-export.sh
+    - name: Get version
+      run: |
+          VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
+          echo "::set-output name=MVN_VERSION::$VERSION"
+
+    - name: Get artifactId
+      run: |
+          ARTIFACT=$( mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout )
+          echo "::set-output name=MVN_ARTIFACT::$ARTIFACT"
+
+    - name: Get groupId
+      run: |
+          GROUP=$( mvn help:evaluate -Dexpression=project.groupId -q -DforceStdout )
+          echo "::set-output name=MVN_GROUP::$GROUP"
 
     - name: Echo image name
       run: echo $DOCKERHUB_USERNAME/$MVN_ARTIFACT:$MVN_VERSION
