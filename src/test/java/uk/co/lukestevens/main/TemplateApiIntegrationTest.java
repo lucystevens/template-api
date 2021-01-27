@@ -44,6 +44,9 @@ public class TemplateApiIntegrationTest {
 		EnvironmentVariableMocker.build()
 			.with(db.getProperties())
 			.with("database.logging.enabled", "true")
+			.with("application.name", "template-api-test")
+			.with("application.group", "uk.co.lukestevens")
+			.with("application.version", "1.0.0-test")
 			.mock();
 		
 		// run server
