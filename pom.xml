@@ -14,9 +14,7 @@
 
 	<!-- Replace me! -->
 	<properties>
-		<junit.jupiter.version>5.5.0</junit.jupiter.version>
 		<project.main.class>uk.co.lukestevens.main.TemplateApiMain</project.main.class>
-		<core.libs.version>2.0.0-SNAPSHOT</core.libs.version>
 	</properties>
 
 	<build>
@@ -81,20 +79,14 @@
 		<dependency>
 			<groupId>uk.co.lukestevens</groupId>
 			<artifactId>server-lib</artifactId>
-			<version>${core.libs.version}</version>
+			<version>2.0.0-SNAPSHOT</version>
 		</dependency>
 
+		<!-- Replace me! -->
 		<dependency>
 			<groupId>uk.co.lukestevens</groupId>
 			<artifactId>template-client</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
-		<dependency>
-			<groupId>com.squareup.okhttp3</groupId>
-			<artifactId>okhttp</artifactId>
-			<version>4.4.1</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
@@ -109,7 +101,7 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>${junit.jupiter.version}</version>
+			<version>5.5.2</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
