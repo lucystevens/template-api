@@ -126,7 +126,7 @@ public class TemplateApiIntegrationTest {
 		assertEquals("1.0.0-test", log.getApplicationVersion());
 		assertEquals("uk.co.lukestevens.server.routes.RouteConfiguration", log.getName());
 		assertEquals("Request received from 127.0.0.1: GET http://localhost:8000/api/example/2", log.getMessage());
-		assertEquals(LoggerLevel.DEBUG, log.getSeverity());
+		assertEquals(LoggerLevel.INFO, log.getSeverity());
 	}
 	
 	@Test
@@ -142,7 +142,7 @@ public class TemplateApiIntegrationTest {
 		Log log = logs.get(0);
 		assertEquals("uk.co.lukestevens.server.routes.RouteConfiguration", log.getName());
 		assertEquals("Request received from 127.0.0.1: GET http://localhost:8000/api/example/2", log.getMessage());
-		assertEquals(LoggerLevel.DEBUG, log.getSeverity());
+		assertEquals(LoggerLevel.INFO, log.getSeverity());
 	}
 	
 	@Test
@@ -160,7 +160,7 @@ public class TemplateApiIntegrationTest {
 			Log log = logs.get(0);
 			assertEquals("uk.co.lukestevens.server.routes.RouteConfiguration", log.getName());
 			assertEquals("Request received from 127.0.0.1: GET http://localhost:8000/api/example/2", log.getMessage());
-			assertEquals(LoggerLevel.DEBUG, log.getSeverity());
+			assertEquals(LoggerLevel.INFO, log.getSeverity());
 		}
 		
 		{
@@ -190,7 +190,7 @@ public class TemplateApiIntegrationTest {
 		Log log = logs.get(0);
 		assertEquals("uk.co.lukestevens.server.routes.RouteConfiguration", log.getName());
 		assertEquals("Request received from 127.0.0.1: POST http://localhost:8000/api/example", log.getMessage());
-		assertEquals(LoggerLevel.DEBUG, log.getSeverity());
+		assertEquals(LoggerLevel.INFO, log.getSeverity());
 	}
 	
 	@Test
@@ -215,7 +215,7 @@ public class TemplateApiIntegrationTest {
 		Log log = logs.get(0);
 		assertEquals("uk.co.lukestevens.server.routes.RouteConfiguration", log.getName());
 		assertEquals("Request received from 127.0.0.1: POST http://localhost:8000/api/example", log.getMessage());
-		assertEquals(LoggerLevel.DEBUG, log.getSeverity());
+		assertEquals(LoggerLevel.INFO, log.getSeverity());
 	}
 	
 	@Test
@@ -235,7 +235,7 @@ public class TemplateApiIntegrationTest {
 		Log log = logs.get(0);
 		assertEquals("uk.co.lukestevens.server.routes.RouteConfiguration", log.getName());
 		assertEquals("Request received from 127.0.0.1: POST http://localhost:8000/api/example", log.getMessage());
-		assertEquals(LoggerLevel.DEBUG, log.getSeverity());
+		assertEquals(LoggerLevel.INFO, log.getSeverity());
 	}
 	
 	@Test
@@ -266,7 +266,7 @@ public class TemplateApiIntegrationTest {
 		Log log = logs.get(0);
 		assertEquals("uk.co.lukestevens.server.routes.RouteConfiguration", log.getName());
 		assertEquals("Request received from 127.0.0.1: PUT http://localhost:8000/api/example/2", log.getMessage());
-		assertEquals(LoggerLevel.DEBUG, log.getSeverity());
+		assertEquals(LoggerLevel.INFO, log.getSeverity());
 	}
 	
 	@Test
@@ -290,7 +290,7 @@ public class TemplateApiIntegrationTest {
 		Log log = logs.get(0);
 		assertEquals("uk.co.lukestevens.server.routes.RouteConfiguration", log.getName());
 		assertEquals("Request received from 127.0.0.1: PUT http://localhost:8000/api/example/2", log.getMessage());
-		assertEquals(LoggerLevel.DEBUG, log.getSeverity());
+		assertEquals(LoggerLevel.INFO, log.getSeverity());
 	}
 	
 	@Test
@@ -319,7 +319,7 @@ public class TemplateApiIntegrationTest {
 		Log log = logs.get(0);
 		assertEquals("uk.co.lukestevens.server.routes.RouteConfiguration", log.getName());
 		assertEquals("Request received from 127.0.0.1: PUT http://localhost:8000/api/example/2", log.getMessage());
-		assertEquals(LoggerLevel.DEBUG, log.getSeverity());
+		assertEquals(LoggerLevel.INFO, log.getSeverity());
 	}
 	
 	@Test
@@ -348,7 +348,7 @@ public class TemplateApiIntegrationTest {
 		Log log = logs.get(0);
 		assertEquals("uk.co.lukestevens.server.routes.RouteConfiguration", log.getName());
 		assertEquals("Request received from 127.0.0.1: DELETE http://localhost:8000/api/example/2", log.getMessage());
-		assertEquals(LoggerLevel.DEBUG, log.getSeverity());
+		assertEquals(LoggerLevel.INFO, log.getSeverity());
 	}
 	
 	@Test
@@ -366,7 +366,7 @@ public class TemplateApiIntegrationTest {
 		Log log = logs.get(0);
 		assertEquals("uk.co.lukestevens.server.routes.RouteConfiguration", log.getName());
 		assertEquals("Request received from 127.0.0.1: DELETE http://localhost:8000/api/example/2", log.getMessage());
-		assertEquals(LoggerLevel.DEBUG, log.getSeverity());
+		assertEquals(LoggerLevel.INFO, log.getSeverity());
 	}
 	
 
