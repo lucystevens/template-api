@@ -25,7 +25,7 @@ import uk.co.lukestevens.api.client.template.TemplateApiClient;
 import uk.co.lukestevens.api.models.Example;
 import uk.co.lukestevens.config.Config;
 import uk.co.lukestevens.config.models.PropertiesConfig;
-import uk.co.lukestevens.jdbc.result.DatabaseResult;
+import uk.co.lukestevens.db.DatabaseResult;
 import uk.co.lukestevens.logging.LoggerLevel;
 import uk.co.lukestevens.logging.models.Log;
 import uk.co.lukestevens.testing.db.TestDatabase;
@@ -88,8 +88,8 @@ public class TemplateApiIntegrationTest {
 		try(DatabaseResult dbr = db.query("select * from core.logs order by timestamp")){
 			return dbr.parseResultSet(rs -> {
 				Log log = new Log();
-				log.setApplicationName(rs.getString("application_name"));
-				log.setApplicationVersion(rs.getString("application_version"));
+				//log.setApplicationName(rs.getString("application_name"));
+				//log.setApplicationVersion(rs.getString("application_version"));
 				log.setName(rs.getString("logger_name"));
 				log.setMessage(rs.getString("message"));
 				log.setSeverity(LoggerLevel.valueOf(rs.getString("severity")));
@@ -122,8 +122,8 @@ public class TemplateApiIntegrationTest {
 		assertEquals(1, logs.size());
 		
 		Log log = logs.get(0);
-		assertEquals("template-api-test", log.getApplicationName());
-		assertEquals("1.0.0-test", log.getApplicationVersion());
+		//assertEquals("template-api-test", log.getApplicationName());
+		//assertEquals("1.0.0-test", log.getApplicationVersion());
 		assertEquals("uk.co.lukestevens.server.routes.RouteConfiguration", log.getName());
 		assertEquals("Request received from 127.0.0.1: GET http://localhost:8000/api/example/2", log.getMessage());
 		assertEquals(LoggerLevel.INFO, log.getSeverity());
