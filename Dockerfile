@@ -1,0 +1,13 @@
+FROM openjdk:8-jre
+
+COPY target/Application.jar .
+
+ARG NAME
+ARG VERSION
+ARG GROUP
+
+ENV APPLICATION_NAME=$NAME
+ENV APPLICATION_VERSION=$VERSION
+ENV APPLICATION_GROUP=$GROUP
+
+CMD ["java", "-jar", "Application.jar"]
