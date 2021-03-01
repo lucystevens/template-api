@@ -15,32 +15,6 @@ It is closely linked with the [template-client][template-client-repo] project.
  - Create route configuration class, replacing `TemplateRouteConfiguration`
  - Create Guice injection module to bind your api service, route configuration and anything else, replacing `TemplateApiModule`
 
-## Installation
-
-Install the latest version of server-lib using Maven:
-
-```	
-<dependency>
-	<groupId>uk.co.lukestevens</groupId>
-	<artifactId>server-lib</artifactId>
-	<version>2.0.0</version>
-</dependency>
-```
-
-### Github Packages Authentication
-Currently public packages on Github require authentication to be installed by Maven. Add the following repository to your project's `.m2/settings.xml`
-
-```
-<repository>
-	<id>github-lukecmstevens</id>
-	<name>GitHub lukecmstevens Apache Maven Packages</name>
-	<url>https://maven.pkg.github.com/lukecmstevens/packages</url>
-	<snapshots><enabled>true</enabled></snapshots>
-</repository>
-```
-
-For more information see here: [Authenticating with Github packages][gh-package-auth]
-
 ## Running
 
 ### Configuration
@@ -74,10 +48,9 @@ Please make sure to update tests as appropriate.
 ## License
 [MIT][mit-license]
 
-[gh-package-auth]: https://docs.github.com/en/free-pro-team@latest/packages/guides/configuring-apache-maven-for-use-with-github-packages#authenticating-to-github-packages
-[workflow-badge-develop]: https://img.shields.io/github/workflow/status/lukecmstevens/server-lib/test/develop?label=develop
-[workflow-badge-main]: https://img.shields.io/github/workflow/status/lukecmstevens/server-lib/release/main?label=main
-[version-badge]: https://img.shields.io/github/v/release/lukecmstevens/server-lib
+[workflow-badge-develop]: https://img.shields.io/github/workflow/status/lukecmstevens/template-api/test/develop?label=develop
+[workflow-badge-main]: https://img.shields.io/github/workflow/status/lukecmstevens/template-api/release/main?label=main
+[version-badge]: https://img.shields.io/github/v/release/lukecmstevens/template-api
 [mit-license]: https://choosealicense.com/licenses/mit/
 [server-lib-repo]: https://github.com/lukecmstevens/server-lib
 [template-client-repo]: https://github.com/lukecmstevens/template-client
