@@ -1,6 +1,6 @@
 # This workflow does all the tagging, building, publishing etc. around a new release
 
-name: Release
+name: release
 
 on:
   push:
@@ -8,7 +8,6 @@ on:
     - main
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKERHUB_USERNAME: lukecmstevens
 
 jobs:
@@ -29,29 +28,20 @@ jobs:
     # Finalise the version by removing the -beta or -SNAPSHOT suffix if it exists
 
     - name: Finalise version
-      run: scripts/finalise-version.sh
+      uses: lukecmstevens/actions/finalise-version@v1
 
     # Build maven package (including running tests)
 
     - name: Build with Maven
-      run: mvn -B package -s .m2/settings.xml --file pom.xml
+      uses: lukecmstevens/actions/maven-task@v1
+      with:
+        task: package
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     # Get maven properties and store in environment
 
-    - name: Get version
-      run: |
-          VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
-          echo "MVN_VERSION=$VERSION" >> $GITHUB_ENV
-
-    - name: Get artifactId
-      run: |
-          ARTIFACT=$( mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout )
-          echo "MVN_ARTIFACT=$ARTIFACT" >> $GITHUB_ENV
-
-    - name: Get groupId
-      run: |
-          GROUP=$( mvn help:evaluate -Dexpression=project.groupId -q -DforceStdout )
-          echo "MVN_GROUP=$GROUP" >> $GITHUB_ENV
+    - name: Get maven properties
+      uses: lukecmstevens/actions/get-mvn-properties@v1
 
     # Setup for docker build and push
 
@@ -98,7 +88,7 @@ jobs:
       id: create_release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ env.MVN_VERSION }}
         release_name: Release ${{ env.MVN_VERSION }}
@@ -123,7 +113,9 @@ jobs:
         ref: develop
 
     - name: Bump version
-      run: scripts/bump-version.sh
+      uses: lukecmstevens/actions/bump-version@v1
+      with:
+       version-suffix: beta
 
     - name: Commit and push bumped version
       uses: stefanzweifel/git-auto-commit-action@v4

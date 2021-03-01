@@ -1,14 +1,11 @@
 # Run tests on pushes to develop
 
-name: Test
+name: test
 
 on:
   push:
     branches:
     - develop
-
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build:
@@ -26,4 +23,7 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
 
     - name: Run maven tests
-      run: mvn test -s .m2/settings.xml --file pom.xml
+      uses: lukecmstevens/actions/maven-task@v1
+      with:
+        task: test
+        token: ${{ secrets.GITHUB_TOKEN }}
