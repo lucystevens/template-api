@@ -1,4 +1,5 @@
-[![Workflow Status][workflow-badge]][workflow-url]
+![Develop Status][workflow-badge-develop]
+![Main Status][workflow-badge-main]
 ![Version][version-badge] 
 
 # template-api
@@ -21,7 +22,7 @@ Install the latest version of server-lib using Maven:
 ```	
 <dependency>
 	<groupId>uk.co.lukestevens</groupId>
-	<artifactId>base-lib</artifactId>
+	<artifactId>server-lib</artifactId>
 	<version>2.0.0</version>
 </dependency>
 ```
@@ -74,10 +75,9 @@ Please make sure to update tests as appropriate.
 [MIT][mit-license]
 
 [gh-package-auth]: https://docs.github.com/en/free-pro-team@latest/packages/guides/configuring-apache-maven-for-use-with-github-packages#authenticating-to-github-packages
-[workflow-badge]: https://github.com/lukecmstevens/template-api/workflows/Test/badge.svg?branch=develop
-[version-badge]: https://img.shields.io/badge/version-1.0.0-red
+[workflow-badge-develop]: https://img.shields.io/github/workflow/status/lukecmstevens/server-lib/test/develop?label=develop
+[workflow-badge-main]: https://img.shields.io/github/workflow/status/lukecmstevens/server-lib/release/main?label=main
+[version-badge]: https://img.shields.io/github/v/release/lukecmstevens/server-lib
 [mit-license]: https://choosealicense.com/licenses/mit/
 [server-lib-repo]: https://github.com/lukecmstevens/server-lib
 [template-client-repo]: https://github.com/lukecmstevens/template-client
-[gson-repo]: https://github.com/google/gson
-[okhttp-repo]: https://github.com/square/okhttp
