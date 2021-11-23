@@ -1,0 +1,33 @@
+# docker-compose setup for local development & testing
+version: '3.4'
+
+services:
+  brewery-api:
+    build:
+      context: .
+      args:
+        PROJECT_NAME: template-api
+        PROJECT_VERSION: 0.0.1-test
+        GH_USER: ${GH_USER}
+        GH_TOKEN: ${GH_TOKEN}
+    ports:
+      - "8000:8000"
+    depends_on:
+      - "db-schemas"
+    environment:
+      - APP_PORT=8000
+      - DATABASE_URL=jdbc:postgresql://local-db:5432/postgres
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=password
+  db-schemas:
+    image: lukecmstevens/db-schemas:latest
+    expose:
+      - 5432
+    ports:
+      - "9001:5432"
+    hostname: local-db
+networks:
+  default:
+    driver_opts:
+      com.docker.network.driver.mtu: 1460
+

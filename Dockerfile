@@ -1,13 +1,22 @@
-FROM openjdk:8-jre
+FROM openjdk:11 AS build
 
-COPY target/Application.jar .
+ARG GH_USER
+ARG GH_TOKEN
 
-ARG NAME
-ARG VERSION
-ARG GROUP
+RUN mkdir /src
+COPY .github/workflows /src
+WORKDIR /src
+RUN ./gradlew fulljar --no-daemon
 
-ENV APPLICATION_NAME=$NAME
-ENV APPLICATION_VERSION=$VERSION
-ENV APPLICATION_GROUP=$GROUP
+FROM adoptopenjdk/openjdk11:alpine
 
-CMD ["java", "-jar", "Application.jar"]
+RUN mkdir /app
+COPY --from=build /src/build/libs/*.jar /app/application.jar
+
+ARG PROJECT_NAME
+ARG PROJECT_VERSION
+
+ENV APPLICATION_NAME=$PROJECT_NAME
+ENV APPLICATION_VERSION=$PROJECT_VERSION
+
+CMD ["java", "-jar", "/app/application.jar"]

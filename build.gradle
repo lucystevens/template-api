@@ -1,0 +1,142 @@
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'uk.co.lukestevens'
+sourceCompatibility = '11'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/lukecmstevens/packages")
+        credentials {
+            username = System.getenv("GH_USER")
+            password = System.getenv("GH_TOKEN")
+        }
+    }
+
+}
+
+dependencies {
+    api 'uk.co.lukestevens:server-lib:3.0.0-SNAPSHOT'
+
+    implementation 'uk.co.lukestevens:base-lib:2.1.0'
+    implementation 'uk.co.lukestevens:db-lib:2.0.0'
+    implementation 'uk.co.lukestevens:template-client:1.0.0'
+    implementation 'ch.qos.logback:logback-classic:1.2.7'
+    implementation 'com.google.inject:guice:4.2.2'
+
+    testImplementation 'com.h2database:h2:1.4.199'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.5.2'
+}
+
+sourceSets {
+    main.java.srcDirs += 'src/main/java/'
+    integrationTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file("src/integrationTest/java")
+        }
+        resources.srcDir file("src/integrationTest/resources")
+    }
+}
+
+configurations {
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestImplementation.extendsFrom testImplementation
+    integrationTestRuntme.extendsFrom testRuntime
+}
+
+task fulljar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'uk.co.lukestevens.main.BreweryApiMain'
+    }
+    from {
+        (configurations.runtimeClasspath).collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    with jar
+}
+
+/**
+ *  Testing
+ */
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+/**
+ *  Scripts
+ */
+
+task exportProperties {
+    doLast {
+        File githubEnv = new File(System.getenv("GITHUB_ENV"))
+        githubEnv.withWriterAppend { out ->
+            out.println "PROJECT_VERSION=$rootProject.version"
+            out.println "PROJECT_NAME=$rootProject.name"
+        }
+    }
+}
+
+static def setVersion(String newVersion) {
+    File properties = new File("gradle.properties")
+    properties.withWriter {
+        it.println "version=$newVersion"
+    }
+}
+
+static String removeSuffix(String version) {
+    int index = version.indexOf("-")
+    if(index > -1) {
+        version = version.substring(0, index)
+    }
+    return version
+}
+
+task finaliseVersion {
+    doLast {
+        String currentVersion = rootProject.version.toString()
+        String newVersion = removeSuffix(currentVersion)
+        if(currentVersion != newVersion) {
+            setVersion(newVersion)
+        }
+    }
+}
+
+task bumpVersion {
+    doLast {
+        String currentVersion = rootProject.version.toString()
+        String finalVersion = removeSuffix(currentVersion)
+        String[] versionParts = finalVersion.split("\\.")
+        if(versionParts.length < 2){
+            throw new IllegalArgumentException("Version must have at least major and minor identifier")
+        }
+
+        // Add major and minor versions
+        StringBuilder newVersion = new StringBuilder(versionParts[0])
+                .append(".")
+                .append(Integer.parseInt(versionParts[1]) + 1)
+        for(int i = 2; i < versionParts.length; i++){
+            newVersion.append(".0") // zero all other parts
+        }
+        newVersion.append("-beta")
+
+        setVersion(newVersion.toString())
+    }
+}
